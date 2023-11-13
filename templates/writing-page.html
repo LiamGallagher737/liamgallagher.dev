@@ -1,7 +1,29 @@
 {% extends "base.html" %}
 
+{% block head %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Article",
+      "headline": "{{ page.title }}",
+      "description": "{{ page.description }}",
+      "author": {
+        "@type": "Person",
+        "name": "Liam Gallagher"
+      },
+      "datePublished": "{{ page.date }}",
+      {% if page.updated %}
+        "dateModified": "{{ page.updated }}",
+      {% endif %}
+      "wordCount": {{ page.word_count }}
+    }
+  </script>
+{% endblock head %}
+
 {% block content %}
-  <h1 class="title">{{ page.title }}</h1>
-  <span class="subtitle">{{ page.date }}</span>
-  {{ page.content | safe }}
+  <article>
+    <h1 class="title">{{ page.title }}</h1>
+    <span class="subtitle">{{ page.date }}</span>
+    {{ page.content | safe }}
+  </article>
 {% endblock content %}

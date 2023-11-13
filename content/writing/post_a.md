@@ -1,6 +1,8 @@
 +++
 title = "Post A"
+description = "A basic post about something crazy"
 date = 2023-11-13
+updated = 2023-11-14
 +++
 
 What about some `inline` code blocks?
