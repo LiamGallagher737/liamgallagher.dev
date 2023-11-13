@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
 {% block head %}
+  <meta name="description" content="{{ page.description }}">
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:description" content="{{ page.description }}" />
+  <meta property="og:url" content="{{ page.permalink }}" />
+  <meta property="article:author" content="https://www.liamgallagher.dev/" />
+  <meta property="article:published_time" content="{{ page.date }}">
+  <meta property="article:modified_time" content="{{ page.updated }}">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
@@ -9,11 +17,12 @@
       "description": "{{ page.description }}",
       "author": {
         "@type": "Person",
-        "name": "Liam Gallagher"
+        "name": "Liam Gallagher",
+        "url": "https://www.liamgallagher.dev/"
       },
-      "datePublished": "{{ page.date }}",
+      "datePublished": "{{ page.date }}T00:00:00+13:00",
       {% if page.updated %}
-        "dateModified": "{{ page.updated }}",
+        "dateModified": "{{ page.updated }}T00:00:00+13:00",
       {% endif %}
       "wordCount": {{ page.word_count }}
     }
