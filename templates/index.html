@@ -22,7 +22,7 @@
     <div class="writing-list">
       {% for post in writing.pages %}
         <article>
-          <a href="{{ post.permalink }}">{{ post.title }}</a>
+          <a href="{{ post.path }}">{{ post.title }}</a>
           <span>{{ post.date }}</span>
         </article>
       {% endfor %}

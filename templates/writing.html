@@ -5,7 +5,7 @@
   <div class="writing-list">
     {% for post in section.pages %}
       <article>
-        <a href="{{ post.permalink }}">{{ post.title }}</a>
+        <a href="{{ post.path }}">{{ post.title }}</a>
         <span>{{ post.date }}</span>
       </article>
     {% endfor %}
