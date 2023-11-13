@@ -1,0 +1,64 @@
+@font-face
+  font-family: 'Geist Variable'
+  src: url('GeistVariableVF.woff2') format('woff2-variations')
+
+@font-face
+  font-family: 'Geist Mono Variable'
+  src: url('GeistMonoVariableVF.woff2') format('woff2-variations')
+
+$geist: 'Geist', sans-serif
+$geist-mono: 'Geist Mono', monospace
+
+$footer-height: 3rem
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+::selection
+  background: hsla(0, 0, 100%, 0.077)
+
+body
+  background: #1a1a1a
+  color: #e5e5e5
+  font-family: $geist
+  font-variation-settings: 'wght' 400
+
+main
+  min-height: calc( 100svh - $footer-height - 1px )
+  max-width: 640px
+  margin: 0 auto
+  padding: 128px 1.5rem
+
+h1
+  font-size: 16px
+  margin-bottom: 1.5rem
+  font-variation-settings: 'wght' 500
+
+footer
+  border-top: 1px
+  border-top-style: solid
+  border-top-color: #2e2e2e
+  color: #707070
+  font-size: 14px
+
+  .content
+    height: $footer-height
+    max-width: 640px
+    margin: 0 auto
+    padding: 0 1.5rem
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+  .links
+    display: flex
+    flex-direction: row
+    gap: 1rem
+
+  a img
+    transition: filter 150ms
+
+  a:hover img
+    filter: brightness(150%)
