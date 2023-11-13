@@ -1,4 +1,4 @@
-base_url = "https://liamgallagher.dev"
+base_url = "https://www.liamgallagher.dev"
 compile_sass = true
 build_search_index = false
 minify_html = true
