@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section>
+    <h1>Liam Gallagher</h1>
+    <p>I'm a 16 year old student from New Zealand who taught himself to code. I enjoy programming in Rust and hating on Python.</p>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <div>
+      <div class="project">
+        <a href="https://github.com/LiamGallagher737/isitonline" target="_blank">isitonline</a>
+        <p>An uptime monitoring app for self-hosting</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Writing</h2>
+    {% set writing = get_section(path="writing/_index.md") %}
+    <div class="writing-list">
+      {% for post in writing.pages %}
+        <article>
+          <a href="{{ post.permalink }}">{{ post.title }}</a>
+          <span>{{ post.date }}</span>
+        </article>
+      {% endfor %}
+      <a href="/writing">All writing</a>
+    </div>
+  </section>
+{% endblock content %}
+

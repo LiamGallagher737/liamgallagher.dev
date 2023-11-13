@@ -6,22 +6,29 @@
   font-family: 'Geist Mono Variable'
   src: url('GeistMonoVariableVF.woff2') format('woff2-variations')
 
-$geist: 'Geist', sans-serif
-$geist-mono: 'Geist Mono', monospace
+$geist: 'Geist Variable', sans-serif
+$geist-mono: 'Geist Mono Variable', monospace
 
 $footer-height: 3rem
+
+$screen-sm: 640px
+$screen-md: 768px
+$screen-lg: 1024px
 
 *
   margin: 0
   padding: 0
   box-sizing: border-box
 
+html
+  --scrollbar-track-color: #343434
+
 ::selection
-  background: hsla(0, 0, 100%, 0.077)
+  background: hsla(0, 0, 100%, 0.12)
 
 body
   background: #1a1a1a
-  color: #e5e5e5
+  color: #d4d4d4
   font-family: $geist
   font-variation-settings: 'wght' 400
 
@@ -29,12 +36,70 @@ main
   min-height: calc( 100svh - $footer-height - 1px )
   max-width: 640px
   margin: 0 auto
-  padding: 128px 1.5rem
+  padding: 64px 1.5rem
+  @media (min-width: $screen-md)
+    padding: 128px 1.5rem
 
-h1
+pre
+  background: #232323 !important
+  padding: 1rem
+  border-radius: 0.5rem
+
+code
+  font-family: $geist-mono
+  font-size: 14px
+  background: #232323
+  padding: 4px
+  border-radius: 4px
+
+h1, h2
   font-size: 16px
   margin-bottom: 1.5rem
   font-variation-settings: 'wght' 500
+  color: #f5f5f5
+
+section
+  margin-bottom: 4rem
+
+p
+  margin-bottom: 1.5rem
+
+a
+  color: #d4d4d4
+  text-decoration: underline
+  text-decoration-color: #505050
+  text-underline-offset: 2.5px
+  transition: 150ms
+  &:hover
+    text-decoration-color: #a0a0a0
+
+// Index
+
+.project
+  a
+    margin-bottom: 6px
+    display: inline-block
+  p
+    color: #a0a0a0
+
+.writing-list
+  display: flex
+  flex-direction: column
+  gap: 1rem
+  article
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+
+// Writing Page
+
+.writing-title
+  margin-bottom: 0
+
+.date
+  color: #a0a0a0
+  margin-bottom: 3rem
+  display: inline-block
 
 footer
   border-top: 1px
@@ -62,3 +127,22 @@ footer
 
   a:hover img
     filter: brightness(150%)
+
+::-webkit-scrollbar
+  width: 16px
+
+::-webkit-scrollbar-track
+  background: transparent
+
+::-webkit-scrollbar-thumb
+  background: var(--scrollbar-track-color)
+  border-radius: 16px
+  border: 5px solid transparent
+  background-clip: padding-box
+  &:hover
+    --scrollbar-track-color: #3e3e3e
+  &:active
+    --scrollbar-track-color: #8f8f8f
+
+::-webkit-scrollbar-button, ::-webkit-scrollbar-corner
+  display: none

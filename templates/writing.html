@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Writing</h1>
+  <div class="writing-list">
+    {% for post in section.pages %}
+      <article>
+        <a href="{{ post.permalink }}">{{ post.title }}</a>
+        <span>{{ post.date }}</span>
+      </article>
+    {% endfor %}
+  </div>
+{% endblock content %}
