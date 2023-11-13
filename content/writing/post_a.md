@@ -10,3 +10,7 @@ fn main() {
     println!("Hello, world!");
 }
 ```
+
+Here is an image.
+
+![Ferris](https://networkstatic.net/wp-content/uploads/2020/01/rustacean-banner.png)

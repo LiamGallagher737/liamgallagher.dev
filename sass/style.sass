@@ -1,10 +1,12 @@
 @font-face
   font-family: 'Geist Variable'
   src: url('GeistVariableVF.woff2') format('woff2-variations')
+  font-display: swap
 
 @font-face
   font-family: 'Geist Mono Variable'
   src: url('GeistMonoVariableVF.woff2') format('woff2-variations')
+  font-display: swap
 
 $geist: 'Geist Variable', sans-serif
 $geist-mono: 'Geist Mono Variable', monospace
@@ -40,38 +42,51 @@ main
   @media (min-width: $screen-md)
     padding: 128px 1.5rem
 
-pre
-  background: #232323 !important
-  padding: 1rem
-  border-radius: 0.5rem
+  h1, h2, p, img, pre
+    margin-bottom: 1.5rem
 
-code
-  font-family: $geist-mono
-  font-size: 14px
-  background: #232323
-  padding: 4px
-  border-radius: 4px
+  pre
+    background: #232323 !important
+    padding: 1rem
+    border-radius: 0.5rem
 
-h1, h2
-  font-size: 16px
-  margin-bottom: 1.5rem
-  font-variation-settings: 'wght' 500
-  color: #f5f5f5
+  code
+    font-family: $geist-mono
+    font-size: 14px
+    background: #232323
+    padding: 4px
+    border-radius: 4px
 
-section
-  margin-bottom: 4rem
+  h1, h2
+    font-size: 16px
+    font-variation-settings: 'wght' 500
+    color: #f5f5f5
 
-p
-  margin-bottom: 1.5rem
+  section
+    margin-bottom: 4rem
 
-a
-  color: #d4d4d4
-  text-decoration: underline
-  text-decoration-color: #505050
-  text-underline-offset: 2.5px
-  transition: 150ms
-  &:hover
-    text-decoration-color: #a0a0a0
+  section:last-child
+    margin-bottom: 0
+
+  a
+    color: #d4d4d4
+    text-decoration: underline
+    text-decoration-color: #505050
+    text-underline-offset: 2.5px
+    transition: 150ms
+    &:hover
+      text-decoration-color: #a0a0a0
+
+  img
+    max-width: 100%
+
+.title
+  margin-bottom: 0
+
+.subtitle
+  color: #a0a0a0
+  margin-bottom: 3rem
+  display: inline-block
 
 // Index
 
@@ -90,16 +105,10 @@ a
     display: flex
     flex-direction: row
     justify-content: space-between
+    span
+      color: #a0a0a0
 
 // Writing Page
-
-.writing-title
-  margin-bottom: 0
-
-.date
-  color: #a0a0a0
-  margin-bottom: 3rem
-  display: inline-block
 
 footer
   border-top: 1px
