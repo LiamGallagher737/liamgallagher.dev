@@ -40,15 +40,16 @@ main
   margin: 0 auto
   padding: 64px 1.5rem
   @media (min-width: $screen-md)
-    padding: 128px 1.5rem
+    padding-bottom: 128px
 
-  h1, h2, p, img, pre
+  h1, h2, p, pre
     margin-bottom: 1.5rem
 
   pre
     background: #232323 !important
     padding: 1rem
     border-radius: 0.5rem
+    overflow-x: auto
 
   code
     font-family: $geist-mono
@@ -74,11 +75,15 @@ main
     text-decoration-color: #505050
     text-underline-offset: 2.5px
     transition: 150ms
-    &:hover
+    &:hover, &:focus
       text-decoration-color: #a0a0a0
 
   img
     max-width: 100%
+    display: block
+
+  nav
+    height: 64px
 
 .title
   margin-bottom: 0
@@ -108,6 +113,10 @@ main
     span
       color: #a0a0a0
 
+@media (min-width: $screen-md)
+  .index-title
+    margin-top: 64px
+
 // Writing Page
 
 footer
@@ -134,11 +143,12 @@ footer
   a img
     transition: filter 150ms
 
-  a:hover img
+  a:hover img, a:focus img
     filter: brightness(150%)
 
 ::-webkit-scrollbar
   width: 16px
+  height: 16px
 
 ::-webkit-scrollbar-track
   background: transparent
