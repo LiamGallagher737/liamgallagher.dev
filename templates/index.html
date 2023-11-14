@@ -21,6 +21,7 @@
     {% set writing = get_section(path="writing/_index.md") %}
     <div class="writing-list">
       {% for post in writing.pages %}
+        {% if loop.index > 5 %}{% break %}{% endif %}
         <article>
           <a href="{{ post.path }}">{{ post.title }}</a>
           <span>{{ post.date }}</span>
