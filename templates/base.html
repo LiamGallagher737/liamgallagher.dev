@@ -13,7 +13,11 @@
       title="ATOM"
       href="/atom.xml"
     />
-    <title>Liam Gallagher</title>
+    <title>
+      {% if page.title %}{{ page.title }} • {% endif %}
+      {% if section.title %}{{ section.title }} • {% endif %}
+      Liam Gallagher
+    </title>
     {% block head %} {% endblock %}
   </head>
   <body>
