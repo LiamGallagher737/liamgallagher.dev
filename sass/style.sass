@@ -42,7 +42,7 @@ main
   @media (min-width: $screen-md)
     padding-bottom: 128px
 
-  h1, h2, p, pre
+  h1, h2, p, pre, blockquote
     margin-bottom: 1.5rem
 
   p
@@ -84,12 +84,23 @@ main
     &:hover, &:focus
       text-decoration-color: #a0a0a0
 
+  strong
+    font-variation-settings: 'wght' 500
+
   img
     max-width: 100%
     display: block
 
   nav
     height: 64px
+
+  blockquote
+    border-left: 4px
+    border-left-color: #2e2e2e
+    border-left-style: solid
+    padding-left: 0.75rem
+    p
+      margin: 0
 
 .title
   margin-bottom: 0
