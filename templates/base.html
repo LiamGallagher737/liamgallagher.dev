@@ -26,11 +26,7 @@
       <div class="content">
         <span>Liam Gallagher</span>
         <div class="links">
-          {% if section.path %}
-            <a href="https://web.archive.org/web/changes/https://www.liamgallagher.dev{{section.path}}" target="_blank">
-              <img src="/icons/internetarchive.svg" alt="Email" width="20" height="20" />
-            </a>
-          {% elif page.path %}
+          {% if page.path %}
             <a href="https://web.archive.org/web/changes/https://www.liamgallagher.dev{{page.path}}" target="_blank">
               <img src="/icons/internetarchive.svg" alt="Email" width="20" height="20" />
             </a>
