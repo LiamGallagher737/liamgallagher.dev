@@ -1,14 +1,14 @@
 +++
 title = "Linux command line args with no runtime"
 description = "Getting command line arguments in Linux x86_64 without a runtime"
-date = 2023-11-19
+date = 2023-11-20
 +++
 
 I have been working on a [simple curl app in pure rust][0] with the challenge of not being allowed to use any external dependencies, this includes anything like the C runtime. One of the things this app needed to do is parse command line arguments so a url can be passed to it `curl http://google.com`.
 
 ## Where are they?
 
-Most places I looked said argc would be in the `rdi` register and argv would be in the `rsi` register. But trying these resulted in endless segfaults, not exactly what I wanted. After more than a few hours of trying different registers and other ways of getting args I stumbled upon a [stack overflow answer][1] here they inspected the registers and stack using gdb.
+Most places I looked said argc would be in the `rdi` register and argv would be in the `rsi` register. But trying these resulted in endless segfaults, not exactly what I wanted. After more than a few hours of trying different registers and other ways of getting args I stumbled upon a [stack overflow answer][1] where they inspected the registers and stack using gdb.
 
 ## Inspecting with GDB
 
@@ -61,27 +61,7 @@ Testing it with the arguments `hello` and `world` resulted in the following.
 0x7fffffffdb1f: "world"
 ```
 
-That's what I wanted. The reason I was struggling so much at the start is when I tried loading argv from the stack I was treating it as a `char**` like the C runtime makes it. Every time I ended up dereferencing a null pointer. That way it's actually laid out is argc at the top of the stack followed by a number of pointers to the argument strings then a null pointer.
-
-# Poking around
-
-Looking a bit further seems to uncover the environment variables.
-
-```sh
-(gdb) x/6g $sp
-0x7fffffffd8a0: 1       140737488345857
-0x7fffffffd8b0: 0       140737488345893
-0x7fffffffd8c0: 140737488345909 140737488345933
-```
-
-```sh
-(gdb) x/s 140737488345893
-0x7fffffffdb25: "SHELL=/bin/bash"
-(gdb) x/s 140737488345909
-0x7fffffffdb35: "WSL2_GUI_APPS_ENABLED=1"
-(gdb) x/s 140737488345933
-0x7fffffffdb4d: "WSL_DISTRO_NAME=Ubuntu"
-```
+That's what I wanted. The reason I was struggling so much at the start is when I tried loading argv from the stack I was treating it as a `char**` like the C runtime makes it. This resulted in dereferencing a null pointer. The way it's actually laid out is argc at the top of the stack followed by a number of pointers to the argument strings then a null pointer.
 
 ## Getting these values in Rust
 
@@ -118,7 +98,7 @@ However when stepping though in gdb we can see that the initial `rsp` value is n
 0x7fffffffd898: 140737354019530 1
 0x7fffffffd8a8: 140737488345857 0
 ```
-This seems to be because stuff has been added to the stack after the start of the `_start` function but before my first line. TO try and get the original value I moved `rsp` in to `r8` instead of creating a local variable which I thought could be messing with things.
+This seems to be because stuff has been added to the stack after the start of the `_start` function but before my first line. To try and get the original value I moved `rsp` in to `r8` instead of creating a local variable which I thought could be messing with things.
 
 ```rs
 pub unsafe extern "C" fn _start() {
