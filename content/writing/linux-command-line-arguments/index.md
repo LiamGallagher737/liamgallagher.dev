@@ -2,6 +2,7 @@
 title = "Linux command line args with no runtime"
 description = "Getting command line arguments in Linux x86_64 without a runtime"
 date = 2023-11-20
+updated = 2023-11-21
 +++
 
 I have been working on a [simple curl app in pure rust][0] with the challenge of not being allowed to use any external dependencies, this includes anything like the C runtime. One of the things this app needed to do is parse command line arguments so a url can be passed to it `curl http://google.com`.
@@ -197,7 +198,7 @@ Just to make sure it works I tested adding some arguments and it worked like a c
 
 Remember that [weird extra instruction](#weird-instruction) than runs before mine from earlier? It changes. This means the 40 byte offset I was doing also needs to be changed.
 
-```asm,diff
+```diff
 _start:
 -   pushq    %rax ; Previous not my instruction
 +   subq    $24, %rsp ; New not my instruction
@@ -207,6 +208,23 @@ _start:
 ```
 
 For some reason when I start adding logic like checking the value of argc and exiting if not enough arguments were provided, the compiler feels the need to change this instruction. According to the [x64 Cheat Sheet][3] this line allocates 24 bytes on the stack. After some more time in gdb I found the new offset was 88 bytes. By keeping the code in `_setup` to a minimum and moving everything else in to a separate `main` function I should't have to keep changing this offset, hopefully.
+
+## Another one last problem
+
+The instruction changes depending on wether I'm compiling with or without the `-g` flag for gdb symbols.
+
+```diff
+_start:
+-   subq    $24, %rsp ; without -g
++   subq    $88, %rsp ; with -g
+    #APP
+
+    movq    %rsp, %r8
+
+    #NO_APP
+```
+
+When I have been emitting assembly I have always been doing it without `-g` as it adds a bunch of information for gdb which I didn't care about when viewing the assembly, but I had still always been running the app with `-g` and therefore never noticed th change. At least now the magic 88 offset makes sense. Unfortunately I don't know a way around this aside from swapping out offsets of 88 bytes and 24 bytes depending on wether I going to use gdb or not.
 
 ## The result
 
