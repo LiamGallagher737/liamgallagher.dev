@@ -2,7 +2,6 @@
 title = "Linux command line args with no runtime"
 description = "Getting command line arguments in Linux x86_64 without a runtime"
 date = 2023-11-19
-draft = true
 +++
 
 I have been working on a [simple curl app in pure rust][0] with the challenge of not being allowed to use any external dependencies, this includes anything like the C runtime. One of the things this app needed to do is parse command line arguments so a url can be passed to it `curl http://google.com`.
