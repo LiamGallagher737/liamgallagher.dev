@@ -8,7 +8,9 @@
   <meta property="og:url" content="{{ page.permalink }}" />
   <meta property="article:author" content="https://www.liamgallagher.dev/" />
   <meta property="article:published_time" content="{{ page.date }}">
-  <meta property="article:modified_time" content="{{ page.updated }}">
+  {% if page.updated %}
+    <meta property="article:modified_time" content="{{ page.updated }}">
+  {% endif %}
   <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
