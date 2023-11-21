@@ -15,7 +15,7 @@ $footer-height: 3rem
 
 $screen-sm: 640px
 $screen-md: 768px
-$screen-lg: 1024px
+$screen-lg: 1120px
 
 *
   margin: 0
@@ -106,10 +106,13 @@ main
     p
       margin: 0
 
+  aside
+    display: none
+
 .title
   margin-bottom: 0
 
-.subtitle
+.subtitle, time
   color: #a0a0a0
   margin-bottom: 3rem
   display: inline-block
@@ -141,6 +144,34 @@ main
     margin-top: 64px
 
 // Writing Page
+
+@media (min-width: $screen-lg)
+  main:has(> article)
+    max-width: 1100px
+    nav
+      max-width: 592px
+      margin: 0 auto
+    article
+      display: grid
+      grid-template-columns: 1fr [content-start] 592px [content-end] 1fr
+      column-gap: 2rem
+    article > *
+      grid-column: content
+    aside
+      display: block
+      list-style-position: inside
+      color: #858585
+      font-style: italic
+      h1, h2, p, pre, blockquote, ul, ol
+        margin-bottom: 0.5rem
+      a
+        color: #858585
+    aside[data-side="left"]
+      grid-column: 1
+    aside[data-side="right"]
+      grid-column: 3
+
+// Generic
 
 footer
   border-top: 1px
