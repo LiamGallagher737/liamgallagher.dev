@@ -226,6 +226,15 @@ _start:
 
 When I have been emitting assembly I have always been doing it without `-g` as it adds a bunch of information for gdb which I didn't care about when viewing the assembly, but I had still always been running the app with `-g` and therefore never noticed th change. At least now the magic 88 offset makes sense. Unfortunately I don't know a way around this aside from swapping out offsets of 88 bytes and 24 bytes depending on wether I going to use gdb or not.
 
+
+<aside data-side="right">
+
+Entire emitted assembly
+
+- [With `-g`](https://gist.github.com/LiamGallagher737/94e3ee84b4842cc911df2e5c866a7bf9#file-with-g-asm-L92-L105)
+- [Without `-g`](https://gist.github.com/LiamGallagher737/e6ff77b0cec089215e094064a7b15975#file-without-g-asm-L54-L60)
+</aside>
+
 ## The result
 
 ```sh
